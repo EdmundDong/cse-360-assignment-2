@@ -96,7 +96,6 @@ class SimpleListTest {
         simpleList.remove(7);
         simpleList.remove(8);
         assertEquals(simpleList.search(5), -1);
-        System.out.println("-------------");
         assertEquals(simpleList.size(), 9);
     }
 

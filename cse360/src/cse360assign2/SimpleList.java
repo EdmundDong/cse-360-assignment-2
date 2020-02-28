@@ -1,6 +1,8 @@
 /**
  * The SimpleList program creates simple lists of integers. 
- * The program add, remove, count, toString, and search lists.
+ * The program can add, append, remove from/to lists.
+ * The program can search, size, sizeUp, sizeDown, and toString lists.
+ * The program can output count, first element, last element of list.
  * 
  * @author: Edmund Dong
  * @classID: 348
@@ -14,8 +16,8 @@ public class SimpleList {
     private int count;
 
     /*
-     * This method constructs SimpleLists by initializing an integer array to size
-     * 10 and count to 0.
+     * This method constructs SimpleLists by initializing an integer array to
+     * size 10 and count to 0.
      */
     public SimpleList() {
         list = new int[10];
@@ -23,8 +25,8 @@ public class SimpleList {
     }
 
     /*
-     * This method adds new integers to SimpleLists by shifting all integers to the
-     * right and inserting the new integer at the head.
+     * This method adds new integers to SimpleLists by shifting all integers to
+     * the right and inserting the new integer at the head.
      */
     public void add(int newNumber) {
         if (count == list.length)
@@ -37,8 +39,8 @@ public class SimpleList {
     }
 
     /*
-     * This method appends new integers to SimpleLists inserting the new integer at
-     * the end.
+     * This method appends new integers to SimpleLists inserting the new integer
+     * at the end.
      */
     public void append(int newNumber) {
         if (count == list.length)
@@ -48,8 +50,8 @@ public class SimpleList {
     }
 
     /*
-     * This method removes integers from SimpleLists by finding the number and then
-     * shifting all integers to the left to replace the integer.
+     * This method removes integers from SimpleLists by finding the number and
+     * then shifting all integers to the left to replace the integer.
      */
     public void remove(int removeThisNumber) {
         for (int index = 0; index < list.length; index++)
@@ -102,7 +104,7 @@ public class SimpleList {
     }
 
     /*
-     * @return String Returns a string containing all integers in the SimpleList.
+     * @return String Returns a string with all integers in the SimpleList.
      */
     public String toString() {
         String outputString = "";
@@ -114,8 +116,8 @@ public class SimpleList {
     }
 
     /*
-     * @return int Returns the index number of an integer in a SimpleList. Returns
-     * -1 if not found.
+     * @return int Returns the index number of an integer in a SimpleList.
+     * Returns -1 if not found.
      */
     public int search(int i) {
         int returnValue = -1; // returns -1 if value is not found
@@ -126,7 +128,7 @@ public class SimpleList {
     }
 
     /*
-     * 
+     * This method increases list size by ~50% if list is full.
      */
     public void sizeUp() {
         int[] temp = new int[(int) (list.length * 1.5)];
@@ -135,7 +137,7 @@ public class SimpleList {
     }
 
     /*
-     * 
+     * This method decreases list size when the list is at least 25% empty.
      */
     public void sizeDown() {
         int[] temp = new int[(list.length - ((int) (list.length * 0.25)))];
