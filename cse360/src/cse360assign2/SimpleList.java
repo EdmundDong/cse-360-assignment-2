@@ -1,9 +1,11 @@
 /**
- * The SimpleList program creates simple lists of integers. The program add, remove, count, toString, and search lists.
+ * The SimpleList program creates simple lists of integers. 
+ * The program add, remove, count, toString, and search lists.
  * 
  * @author: Edmund Dong
  * @classID: 348
  * @assignmentNumber: 1
+ * @git: https://github.com/EdmundDong/cse360
  */
 package cse360assign2;
 
@@ -25,11 +27,24 @@ public class SimpleList {
      * right and inserting the new integer at the head.
      */
     public void add(int newNumber) {
-        for (int index = list.length - 1; index > 0; index--) // starting at the end of array, shift all numbers left
+        if (count == list.length)
+            sizeUp();
+        // starting at the end of array, shift all numbers right
+        for (int index = list.length - 1; index > 0; index--)
             list[index] = list[index - 1];
         list[0] = newNumber; // insert new number in first position
-        if (count < 10) // increase count unless count is at max
-            count++;
+        count++;
+    }
+
+    /*
+     * This method appends new integers to SimpleLists inserting the new integer at
+     * the end.
+     */
+    public void append(int newNumber) {
+        if (count == list.length)
+            sizeUp();
+        list[count] = newNumber; // insert new number in first position
+        count++;
     }
 
     /*
@@ -37,9 +52,9 @@ public class SimpleList {
      * shifting all integers to the left to replace the integer.
      */
     public void remove(int removeThisNumber) {
-        for (int index = 0; index < 10; index++)
+        for (int index = 0; index < list.length; index++)
             if (list[index] == removeThisNumber) {
-                int[] tempList = new int[10];
+                int[] tempList = new int[list.length];
                 for (int subIndex = index; subIndex < 9; subIndex++)
                     tempList[subIndex] = list[subIndex + 1];
                 count--;
@@ -52,6 +67,37 @@ public class SimpleList {
      */
     public int count() {
         return count;
+    }
+
+    /*
+     * @return int Returns current number of possible spots in list
+     */
+    public int size() {
+        return list.length;
+    }
+
+    /*
+     * @return int Returns first number in list.
+     */
+    public int first() {
+        int temp;
+        if (count > 0)
+            temp = list[0];
+        else
+            temp = -1;
+        return temp;
+    }
+
+    /*
+     * @return int Returns last number in list.
+     */
+    public int last() {
+        int temp;
+        if (count > 0)
+            temp = list[count - 1];
+        else
+            temp = -1;
+        return temp;
     }
 
     /*
@@ -76,5 +122,34 @@ public class SimpleList {
             if (list[index] == i)
                 returnValue = index;
         return returnValue;
+    }
+
+    /*
+     * 
+     */
+    public void sizeUp() {
+        int[] temp = new int[(int) (list.length * 1.5)];
+        temp = transfer(temp, list);
+        list = temp;
+    }
+
+    /*
+     * 
+     */
+    public void sizeDown() {
+        int[] temp = new int[(int) (list.length * 0.75)];
+        if (temp.length == 0)
+            temp = new int[1]; // ensures size is always at least 1
+        temp = transfer(temp, list);
+        list = temp;
+    }
+
+    /*
+     * @return int[] Returns new list with contents of old list transfered over.
+     */
+    public int[] transfer(int[] newList, int[] eraseList) {
+        for (int i = 0; i < newList.length && i < eraseList.length; i++)
+            newList[i] = eraseList[i];
+        return newList;
     }
 }
