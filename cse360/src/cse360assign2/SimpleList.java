@@ -54,12 +54,13 @@ public class SimpleList {
     public void remove(int removeThisNumber) {
         for (int index = 0; index < list.length; index++)
             if (list[index] == removeThisNumber) {
-                int[] tempList = new int[list.length];
-                for (int subIndex = index; subIndex < 9; subIndex++)
-                    tempList[subIndex] = list[subIndex + 1];
+                for (int subIndex = index; subIndex < list.length - 1; subIndex++)
+                    list[subIndex] = list[subIndex + 1];
                 count--;
-                list = tempList;
             }
+        if (list.length - count > (int) (list.length * 0.25)) {
+            sizeDown();
+        }
     }
 
     /*
@@ -107,7 +108,7 @@ public class SimpleList {
         String outputString = "";
         for (int index = 0; index < count; index++)
             outputString = outputString + list[index] + " ";
-        for (int index2 = count; index2 < 10; index2++)
+        for (int index2 = count; index2 < list.length; index2++)
             outputString = outputString + 0 + " ";
         return outputString.trim();
     }
@@ -118,7 +119,7 @@ public class SimpleList {
      */
     public int search(int i) {
         int returnValue = -1; // returns -1 if value is not found
-        for (int index = 0; index < 10; index++)
+        for (int index = 0; index < list.length; index++)
             if (list[index] == i)
                 returnValue = index;
         return returnValue;
@@ -137,7 +138,7 @@ public class SimpleList {
      * 
      */
     public void sizeDown() {
-        int[] temp = new int[(int) (list.length * 0.75)];
+        int[] temp = new int[(list.length - ((int) (list.length * 0.25)))];
         if (temp.length == 0)
             temp = new int[1]; // ensures size is always at least 1
         temp = transfer(temp, list);
