@@ -4,9 +4,9 @@
  * The program can search, size, sizeUp, sizeDown, and toString lists.
  * The program can output count, first element, last element of list.
  * 
- * @author: Edmund Dong
+ * @author: EdmundDong
  * @classID: 348
- * @assignmentNumber: 1
+ * @assignmentNumber: 2
  * @git: https://github.com/EdmundDong/cse360
  */
 package cse360assign2;
