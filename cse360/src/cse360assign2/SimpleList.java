@@ -56,7 +56,8 @@ public class SimpleList {
     public void remove(int removeThisNumber) {
         for (int index = 0; index < list.length; index++)
             if (list[index] == removeThisNumber) {
-                for (int subIndex = index; subIndex < list.length - 1; subIndex++)
+                int tempSize = list.length - 1;
+                for (int subIndex = index; subIndex < tempSize; subIndex++)
                     list[subIndex] = list[subIndex + 1];
                 count--;
             }
